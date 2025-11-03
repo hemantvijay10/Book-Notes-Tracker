@@ -1,0 +1,124 @@
+<!--
+  Book Notes Tracker - Home Page
+  Author: Hemant Vijay
+  Last Updated: 3-Nov-2025
+  Project Credit: This project is part of Angela Yu's Complete Web Development Bootcamp
+  Course URL: https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/40325688#overview
+
+  This page displays all the books in your reading list
+  Books can be sorted by rating, recency, or title
+-->
+
+<!-- Include the header partial -->
+<%- include('partials/header') %>
+
+<div class="container">
+  <!-- Page title and description -->
+  <div class="page-header">
+    <h1>My Reading List</h1>
+    <p>Track books you have read with notes and ratings</p>
+  </div>
+
+  <!-- Sorting controls -->
+  <div class="controls">
+    <div class="sort-buttons">
+      <span class="sort-label">Sort by:</span>
+      <!-- Each button applies a different sort order -->
+      <a href="/?sort=recency" class="btn <%= sortBy === 'recency' ? 'btn-active' : '' %>">
+        Recency
+      </a>
+      <a href="/?sort=rating" class="btn <%= sortBy === 'rating' ? 'btn-active' : '' %>">
+        Rating
+      </a>
+      <a href="/?sort=title" class="btn <%= sortBy === 'title' ? 'btn-active' : '' %>">
+        Title
+      </a>
+    </div>
+  </div>
+
+  <!-- Check if there are any books to display -->
+  <% if (books.length === 0) { %>
+    <!-- Show this message if no books are in the database -->
+    <div class="empty-state">
+      <h2>No books yet</h2>
+      <p>Start building your reading list by adding your first book!</p>
+      <a href="/add" class="btn-primary">Add Your First Book</a>
+    </div>
+  <% } else { %>
+    <!-- Display books in a grid layout -->
+    <div class="books-grid">
+      <!-- Loop through each book and display it as a card -->
+      <% books.forEach(book => { %>
+        <div class="book-card">
+          <!-- Book cover image from Open Library API -->
+          <div class="book-cover">
+            <img src="<%= book.coverUrl %>" alt="Cover of <%= book.title %>" onerror="this.src='/images/no-cover.svg'">
+          </div>
+
+          <!-- Book information -->
+          <div class="book-info">
+            <!-- Book title -->
+            <h3 class="book-title">
+              <a href="/book/<%= book.id %>"><%= book.title %></a>
+            </h3>
+
+            <!-- Book author -->
+            <p class="book-author">by <%= book.author %></p>
+
+            <!-- Display rating if available -->
+            <% if (book.rating) { %>
+              <div class="book-rating">
+                <!-- Show rating as stars (filled circles) -->
+                <span class="stars">
+                  <% for (let i = 0; i < book.rating; i++) { %>
+                    &#9733;
+                  <% } %>
+                </span>
+                <span class="rating-number"><%= book.rating %>/10</span>
+              </div>
+            <% } %>
+
+            <!-- Display date read if available -->
+            <% if (book.date_read) { %>
+              <p class="book-date">
+                Read on <%= new Date(book.date_read).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                }) %>
+              </p>
+            <% } %>
+
+            <!-- Display a preview of notes if available -->
+            <% if (book.notes) { %>
+              <p class="book-notes-preview">
+                <%= book.notes.substring(0, 100) %><%= book.notes.length > 100 ? '...' : '' %>
+              </p>
+            <% } %>
+
+            <!-- Action buttons for each book -->
+            <div class="book-actions">
+              <a href="/book/<%= book.id %>" class="btn-secondary">View Details</a>
+              <a href="/edit/<%= book.id %>" class="btn-secondary">Edit</a>
+
+              <!-- Delete button with form submission -->
+              <form action="/delete/<%= book.id %>" method="POST" style="display: inline;">
+                <button type="submit" class="btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">
+                  Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- Display total count of books -->
+    <div class="book-count">
+      <p>Total books: <%= books.length %></p>
+    </div>
+  <% } %>
+</div>
+
+<!-- Include the footer partial -->
+<%- include('partials/footer') %>

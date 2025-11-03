@@ -1,0 +1,42 @@
+<!--
+  Book Notes Tracker - Header Partial
+  Author: Hemant Vijay
+  Last Updated: 3-Nov-2025
+  Project Credit: This project is part of Angela Yu's Complete Web Development Bootcamp
+  Course URL: https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/40325688#overview
+
+  This is a reusable header component that appears on all pages
+  It contains the HTML document structure and navigation
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Notes Tracker</title>
+
+  <!-- Link to our custom stylesheet -->
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <!-- Google Fonts for better typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation bar at the top of the page -->
+  <nav class="navbar">
+    <div class="container">
+      <!-- Site title that links back to home page -->
+      <a href="/" class="logo">Book Notes</a>
+
+      <!-- Navigation menu -->
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/add" class="btn-primary">Add Book</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main content area - this will be filled by individual pages -->
+  <main class="main-content">

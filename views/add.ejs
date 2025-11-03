@@ -1,0 +1,111 @@
+<!--
+  Book Notes Tracker - Add Book Page
+  Author: Hemant Vijay
+  Last Updated: 3-Nov-2025
+  Project Credit: This project is part of Angela Yu's Complete Web Development Bootcamp
+  Course URL: https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/40325688#overview
+
+  This page contains a form to add a new book to your reading list
+-->
+
+<!-- Include the header partial -->
+<%- include('partials/header') %>
+
+<div class="container">
+  <!-- Page title -->
+  <div class="page-header">
+    <h1>Add New Book</h1>
+    <p>Add a book to your reading list with your notes and rating</p>
+  </div>
+
+  <!-- Form to add a new book -->
+  <!-- When submitted, this form sends data to the POST /add route -->
+  <div class="form-container">
+    <form action="/add" method="POST" class="book-form">
+
+      <!-- Book Title field (required) -->
+      <div class="form-group">
+        <label for="title">Book Title *</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter the book title"
+          required
+          class="form-input">
+        <small>The name of the book</small>
+      </div>
+
+      <!-- Author field (required) -->
+      <div class="form-group">
+        <label for="author">Author *</label>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          placeholder="Enter the author's name"
+          required
+          class="form-input">
+        <small>The person who wrote the book</small>
+      </div>
+
+      <!-- ISBN field (optional) -->
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input
+          type="text"
+          id="isbn"
+          name="isbn"
+          placeholder="Enter the ISBN (10 or 13 digits)"
+          class="form-input">
+        <small>The ISBN number is used to fetch the book cover. You can find it on the back of the book or on online bookstores.</small>
+      </div>
+
+      <!-- Rating field (optional) -->
+      <div class="form-group">
+        <label for="rating">Your Rating (1-10)</label>
+        <input
+          type="number"
+          id="rating"
+          name="rating"
+          min="1"
+          max="10"
+          placeholder="Rate from 1 to 10"
+          class="form-input">
+        <small>How would you rate this book on a scale of 1 to 10?</small>
+      </div>
+
+      <!-- Date Read field (optional) -->
+      <div class="form-group">
+        <label for="date_read">Date Finished Reading</label>
+        <input
+          type="date"
+          id="date_read"
+          name="date_read"
+          class="form-input">
+        <small>When did you finish reading this book?</small>
+      </div>
+
+      <!-- Notes field (optional) -->
+      <div class="form-group">
+        <label for="notes">Your Notes</label>
+        <textarea
+          id="notes"
+          name="notes"
+          rows="8"
+          placeholder="Write your thoughts, key takeaways, or memorable quotes from the book..."
+          class="form-input"></textarea>
+        <small>Your personal notes, thoughts, and key takeaways from the book</small>
+      </div>
+
+      <!-- Form buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Add Book</button>
+        <a href="/" class="btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Include the footer partial -->
+<%- include('partials/footer') %>

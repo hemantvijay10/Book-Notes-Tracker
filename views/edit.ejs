@@ -1,0 +1,118 @@
+<!--
+  Book Notes Tracker - Edit Book Page
+  Author: Hemant Vijay
+  Last Updated: 3-Nov-2025
+  Project Credit: This project is part of Angela Yu's Complete Web Development Bootcamp
+  Course URL: https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/40325688#overview
+
+  This page contains a form to edit an existing book in your reading list
+  The form is pre-filled with the current book data
+-->
+
+<!-- Include the header partial -->
+<%- include('partials/header') %>
+
+<div class="container">
+  <!-- Page title -->
+  <div class="page-header">
+    <h1>Edit Book</h1>
+    <p>Update the information for "<%= book.title %>"</p>
+  </div>
+
+  <!-- Form to edit the book -->
+  <!-- When submitted, this form sends updated data to the POST /edit/:id route -->
+  <div class="form-container">
+    <form action="/edit/<%= book.id %>" method="POST" class="book-form">
+
+      <!-- Book Title field (required) -->
+      <!-- Pre-filled with current title -->
+      <div class="form-group">
+        <label for="title">Book Title *</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value="<%= book.title %>"
+          required
+          class="form-input">
+        <small>The name of the book</small>
+      </div>
+
+      <!-- Author field (required) -->
+      <!-- Pre-filled with current author -->
+      <div class="form-group">
+        <label for="author">Author *</label>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          value="<%= book.author %>"
+          required
+          class="form-input">
+        <small>The person who wrote the book</small>
+      </div>
+
+      <!-- ISBN field (optional) -->
+      <!-- Pre-filled with current ISBN if available -->
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input
+          type="text"
+          id="isbn"
+          name="isbn"
+          value="<%= book.isbn || '' %>"
+          class="form-input">
+        <small>The ISBN number is used to fetch the book cover</small>
+      </div>
+
+      <!-- Rating field (optional) -->
+      <!-- Pre-filled with current rating if available -->
+      <div class="form-group">
+        <label for="rating">Your Rating (1-10)</label>
+        <input
+          type="number"
+          id="rating"
+          name="rating"
+          min="1"
+          max="10"
+          value="<%= book.rating || '' %>"
+          class="form-input">
+        <small>How would you rate this book on a scale of 1 to 10?</small>
+      </div>
+
+      <!-- Date Read field (optional) -->
+      <!-- Pre-filled with current date if available -->
+      <div class="form-group">
+        <label for="date_read">Date Finished Reading</label>
+        <input
+          type="date"
+          id="date_read"
+          name="date_read"
+          value="<%= book.date_read || '' %>"
+          class="form-input">
+        <small>When did you finish reading this book?</small>
+      </div>
+
+      <!-- Notes field (optional) -->
+      <!-- Pre-filled with current notes if available -->
+      <div class="form-group">
+        <label for="notes">Your Notes</label>
+        <textarea
+          id="notes"
+          name="notes"
+          rows="8"
+          class="form-input"><%= book.notes || '' %></textarea>
+        <small>Your personal notes, thoughts, and key takeaways from the book</small>
+      </div>
+
+      <!-- Form buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Update Book</button>
+        <a href="/" class="btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Include the footer partial -->
+<%- include('partials/footer') %>

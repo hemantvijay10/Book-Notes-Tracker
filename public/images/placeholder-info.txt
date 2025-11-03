@@ -1,0 +1,26 @@
+Placeholder Image Instructions
+
+This folder should contain a file named "no-cover.png" which serves as a placeholder image for books without cover images.
+
+You can create this placeholder image yourself using any image editing software or online tool:
+
+Option 1: Create your own image
+1. Create a 300x450 pixel image (standard book cover size)
+2. Add text like "No Cover Available" or "Book Cover Not Found"
+3. Use a neutral background color like light gray
+4. Save as "no-cover.png" in this folder
+
+Option 2: Download a free placeholder image
+1. Visit a free image site like Unsplash, Pexels, or Pixabay
+2. Search for "book placeholder" or "book cover"
+3. Download and resize to 300x450 pixels
+4. Save as "no-cover.png" in this folder
+
+Option 3: Use a simple solid color
+1. Create a 300x450 pixel image with a solid color
+2. Save as "no-cover.png" in this folder
+
+The application will automatically use this image when a book does not have a valid ISBN or when the Open Library API cannot find a cover.
+
+Author: Hemant Vijay
+Last Updated: 3-Nov-2025
