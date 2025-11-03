@@ -1,0 +1,25 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables (if you add them later)
+.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output (if any)
+dist/
+build/
